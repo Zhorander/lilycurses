@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>lcurses : Lily</title>
+        <link href="../docstyle.css" rel="stylesheet">
+    </head>
+
+    <body role="document">
+        <section id='main'>
+<h1>Module lcurses</h1>
+<div class='doc'><p>
+NCurses bindings.</p></div>
+<h2>Classes</h2>
+<table><tbody>
+<tr>
+<td><a class='reflink' href='class.Window.html'>Window</a></td>
+<td>
+The Window class provides an abstraction to the ncurses WINDOW type.
+Most functions that operate on a window are member functions.</td>
+</tr>
+</tbody></table>
+<h2>Functions</h2>
+<h3 id='function.initscr'><code>define <a href='#function.initscr'>initscr</a></code></h3>
+<div class='doc'><p>
+Initialize NCurses</p></div>
+<h3 id='function.endwin'><code>define <a href='#function.endwin'>endwin</a>: Integer</code></h3>
+<div class='doc'><p>
+Exit curses mode</p></div>
+<h3 id='function.raw'><code>define <a href='#function.raw'>raw</a>: Integer</code></h3>
+<div class='doc'><p>
+Characters passed to the terminal are sent without creating signals (CTRL-Z, for example)</p></div>
+<h3 id='function.cbreak'><code>define <a href='#function.cbreak'>cbreak</a>: Integer</code></h3>
+<div class='doc'><p>
+Same as raw, but signals are created</p></div>
+<h3 id='function.nocbreak'><code>define <a href='#function.nocbreak'>nocbreak</a>: Integer</code></h3>
+<div class='doc'><p>
+Exit cbreak mode</p></div>
+<h3 id='function.echo'><code>define <a href='#function.echo'>echo</a>: Integer</code></h3>
+<div class='doc'><p>
+echo characters typed (default behaviour)</p></div>
+<h3 id='function.noecho'><code>define <a href='#function.noecho'>noecho</a></code></h3>
+<div class='doc'><p>
+Disable echoing characters</p></div>
+<h3 id='function.halfdelay'><code>define <a href='#function.halfdelay'>halfdelay</a>(tenths: Integer)</code></h3>
+<div class='doc'><p>
+Enable half-delay mode; wait for x tenths of a second
+for input.</p></div>
+<h3 id='function.COLS'><code>define <a href='#function.COLS'>COLS</a>: Integer</code></h3>
+<div class='doc'><p>
+The number of columns on the screen</p></div>
+<h3 id='function.LINES'><code>define <a href='#function.LINES'>LINES</a>: Integer</code></h3>
+<div class='doc'><p>
+The number of lines on the screen</p></div>
+<h3 id='function.COLOR_PAIR'><code>define <a href='#function.COLOR_PAIR'>COLOR_PAIR</a>(n: Integer): Integer</code></h3>
+<div class='doc'><p>
+Converts a color pair number to an attribute</p></div>
+<h3 id='function.start_color'><code>define <a href='#function.start_color'>start_color</a>: Integer</code></h3>
+<div class='doc'><p>
+Start color mode</p></div>
+<h3 id='function.has_colors'><code>define <a href='#function.has_colors'>has_colors</a>: Boolean</code></h3>
+<div class='doc'><p>
+Checks if the current terminal supports color</p></div>
+<h3 id='function.can_change_color'><code>define <a href='#function.can_change_color'>can_change_color</a>: Boolean</code></h3>
+<div class='doc'><p>
+Checks if the current terminal supports changing colors</p></div>
+<h3 id='function.init_pair'><code>define <a href='#function.init_pair'>init_pair</a>(num_pairs: Integer, fg: Integer, bg: Integer): Integer</code></h3>
+<div class='doc'><p>
+Changes the definition of a color-pair</p></div>
+<h3 id='function.init_color'><code>define <a href='#function.init_color'>init_color</a>(color: Integer, r: Integer, g: Integer, b: Integer): Integer</code></h3>
+<div class='doc'><p>
+Change the definition of a color</p></div>
+<h3 id='function.color_content'><code>define <a href='#function.color_content'>color_content</a>(color: Integer): Tuple[Integer, Integer, Integer]</code></h3>
+<div class='doc'><p>
+return the rgb contents of a color in an &lt;[r,g,b]&gt; tuple</p></div>
+<h3 id='function.curs_set'><code>define <a href='#function.curs_set'>curs_set</a>(set: Boolean): Integer</code></h3>
+<div class='doc'><p>
+Sets the cursor on/off</p></div>
+<h3 id='function.sleep'><code>define <a href='#function.sleep'>sleep</a>(ms: Integer)</code></h3>
+<div class='doc'><p>
+sleep for ms micro seconds</p></div>
+<h2>Vars</h2>
+<h3 id='var.KEY_LEFT'><code>var <a href='#var.KEY_LEFT'>KEY_LEFT</a>: Byte</code></h3>
+<div class='doc'><p>
+The value of a left key press</p></div>
+<h3 id='var.KEY_RIGHT'><code>var <a href='#var.KEY_RIGHT'>KEY_RIGHT</a>: Byte</code></h3>
+<div class='doc'><p>
+The value of a right key press</p></div>
+<h3 id='var.KEY_UP'><code>var <a href='#var.KEY_UP'>KEY_UP</a>: Byte</code></h3>
+<div class='doc'><p>
+The value of an up key press</p></div>
+<h3 id='var.KEY_DOWN'><code>var <a href='#var.KEY_DOWN'>KEY_DOWN</a>: Byte</code></h3>
+<div class='doc'><p>
+The value of a down key press</p></div>
+<h3 id='var.COLOR_RED'><code>var <a href='#var.COLOR_RED'>COLOR_RED</a>: Integer</code></h3>
+<div class='doc'><p>
+The red ncurses value</p></div>
+<h3 id='var.COLOR_BLACK'><code>var <a href='#var.COLOR_BLACK'>COLOR_BLACK</a>: Integer</code></h3>
+<div class='doc'><p>
+The black ncurses value</p></div>
+<h3 id='var.COLOR_GREEN'><code>var <a href='#var.COLOR_GREEN'>COLOR_GREEN</a>: Integer</code></h3>
+<div class='doc'><p>
+The green ncurses value</p></div>
+<h3 id='var.COLOR_YELLOW'><code>var <a href='#var.COLOR_YELLOW'>COLOR_YELLOW</a>: Integer</code></h3>
+<div class='doc'><p>
+The yellow ncurses value</p></div>
+<h3 id='var.COLOR_BLUE'><code>var <a href='#var.COLOR_BLUE'>COLOR_BLUE</a>: Integer</code></h3>
+<div class='doc'><p>
+The blue ncurses value</p></div>
+<h3 id='var.COLOR_MAGENTA'><code>var <a href='#var.COLOR_MAGENTA'>COLOR_MAGENTA</a>: Integer</code></h3>
+<div class='doc'><p>
+The magenta ncurses value</p></div>
+<h3 id='var.COLOR_CYAN'><code>var <a href='#var.COLOR_CYAN'>COLOR_CYAN</a>: Integer</code></h3>
+<div class='doc'><p>
+The cyan ncurses value</p></div>
+<h3 id='var.COLOR_WHITE'><code>var <a href='#var.COLOR_WHITE'>COLOR_WHITE</a>: Integer</code></h3>
+<div class='doc'><p>
+The white ncurses value</p></div>
+<h3 id='var.A_BOLD'><code>var <a href='#var.A_BOLD'>A_BOLD</a>: Integer</code></h3>
+<div class='doc'><p>
+The bold attribute</p></div>
+<h3 id='var.A_UNDERLINE'><code>var <a href='#var.A_UNDERLINE'>A_UNDERLINE</a>: Integer</code></h3>
+<div class='doc'><p>
+The underline attribute</p></div>
+<h3 id='var.A_NORMAL'><code>var <a href='#var.A_NORMAL'>A_NORMAL</a>: Integer</code></h3>
+<div class='doc'><p>
+The normal attribute</p></div>
+<h3 id='var.A_STANDOUT'><code>var <a href='#var.A_STANDOUT'>A_STANDOUT</a>: Integer</code></h3>
+<div class='doc'><p>
+The standout attribute: highlights text</p></div>
+<h3 id='var.A_BLINK'><code>var <a href='#var.A_BLINK'>A_BLINK</a>: Integer</code></h3>
+<div class='doc'><p>
+The blink attribute</p></div>
+<h3 id='var.A_REVERSE'><code>var <a href='#var.A_REVERSE'>A_REVERSE</a>: Integer</code></h3>
+<div class='doc'><p>
+The reverse attribute</p></div>
+<h3 id='var.ERR'><code>var <a href='#var.ERR'>ERR</a>: Integer</code></h3>
+<div class='doc'><p>
+The ncurses error value</p></div>
+        </section>
+    </body>
+</html>

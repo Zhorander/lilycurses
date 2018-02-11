@@ -1,0 +1,31 @@
+import lcurses
+
+#init ncurses
+lcurses.initscr()
+
+#If you want to manipulate stdscr, you need
+#to declare a window, then set it as stdscr
+#the various macros need to be functions since they're not set until
+#initscr() is called
+var stdscr = lcurses.Window(0,0,lcurses.COLS(),lcurses.LINES(), true)
+stdscr.stdscr()
+
+#check the rgb contents of the color red
+var rgb = lcurses.color_content(lcurses.COLOR_RED)
+
+#create a separate window
+var win2 = lcurses.Window(lcurses.COLS() / 2, lcurses.LINES() / 2, 20, 20, true)
+win2.mvprint(1, 1, "Hello, World!")
+win2.mvprint(2, 1, "" ++ lcurses.ERR)
+win2.refresh()
+
+stdscr.mvaddch(1, 1, 'e')
+stdscr.addch('r')
+stdscr.addch('t')
+stdscr.addch('y')
+stdscr.refresh()
+var c = stdscr.getch()
+
+lcurses.endwin()
+
+print(rgb)

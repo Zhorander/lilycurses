@@ -1,0 +1,52 @@
+import lcurses
+
+lcurses.initscr()
+
+var stdscr = lcurses.Window(0,0,lcurses.COLS(),lcurses.LINES(), true)
+stdscr.stdscr()
+
+var x = 10
+var y = 10
+var dir_x = 1
+var dir_y = 1
+var next_x = 1
+var next_y = 1
+var max_x = 0
+var max_y = 0
+
+lcurses.noecho()
+lcurses.curs_set(false)
+lcurses.start_color()
+
+while (true): {
+    var yx = stdscr.getmaxyx() #<[y,x]>
+    max_y = yx[0]
+    max_x = yx[1]
+    stdscr.clear()
+
+    stdscr.mvprint(y, x, "Hello, World!")
+    stdscr.refresh()
+    lcurses.sleep(40000)
+
+    next_x = x + dir_x
+    next_y = y + dir_y
+
+    if (next_x >= (max_x - 12) || next_x < 0): {
+        dir_x *= -1
+        lcurses.init_pair(1, lcurses.COLOR_RED, lcurses.COLOR_BLACK)
+        stdscr.attron(lcurses.COLOR_PAIR(1))
+    else:
+        x += dir_x
+    }
+
+    if (next_y >= max_y || next_y < 0): {
+        dir_y *= -1
+        lcurses.init_pair(1, lcurses.COLOR_CYAN, lcurses.COLOR_BLACK)
+        stdscr.attron(lcurses.COLOR_PAIR(1))
+    else:
+        y += dir_y
+    }
+}
+
+lcurses.endwin()
+

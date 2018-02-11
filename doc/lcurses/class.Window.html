@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>lcurses.Window : Lily</title>
+        <link href="../docstyle.css" rel="stylesheet">
+    </head>
+
+    <body role="document">
+        <section id='main'>
+<h1>Class Window</h1>
+<pre>(foreign) class Window {
+    WINDOW *win;
+    int x;
+    int y;
+    int w;
+    int h;
+}</pre>
+<div class='doc'><p>
+The Window class provides an abstraction to the ncurses WINDOW type.
+Most functions that operate on a window are member functions.</p></div>
+<h2>Methods</h2>
+<h3 id='method.&lt;new&gt;'><code>define <a href='#method.&lt;new&gt;'>&lt;new&gt;</a>(x: Integer, y: Integer, w: Integer, h: Integer, box: *Boolean = false): <a href='class.Window.html'>Window</a> <i>constructor</i></code></h3>
+<div class='doc'><p></p></div>
+<h3 id='method.refresh'><code>define <a href='#method.refresh'>refresh</a>: Integer</code></h3>
+<div class='doc'><p>
+Refresh the window</p></div>
+<h3 id='method.print'><code>define <a href='#method.print'>print</a>(str: String): Integer</code></h3>
+<div class='doc'><p>
+Print a string to the window</p></div>
+<h3 id='method.mvprint'><code>define <a href='#method.mvprint'>mvprint</a>(y: Integer, x: Integer, str: String): Integer</code></h3>
+<div class='doc'><p>
+Move to an xy coordinate, then print a string to the window</p></div>
+<h3 id='method.addch'><code>define <a href='#method.addch'>addch</a>(ch: Byte): Integer</code></h3>
+<div class='doc'><p>
+Print a character to the window</p></div>
+<h3 id='method.mvaddch'><code>define <a href='#method.mvaddch'>mvaddch</a>(y: Integer, x: Integer, ch: Byte): Integer</code></h3>
+<div class='doc'><p>
+Move to an xy coordinate, then print a character to the window</p></div>
+<h3 id='method.getmaxyx'><code>define <a href='#method.getmaxyx'>getmaxyx</a>: Tuple[Integer, Integer]</code></h3>
+<div class='doc'><p>
+Returns a tuple with the number of rows and columns</p></div>
+<h3 id='method.border'><code>define <a href='#method.border'>border</a>(ls: Integer, rs: Integer, ts: Integer, bs: Integer, tl: Integer, tr: Integer, bl: Integer, br: Integer): Integer</code></h3>
+<div class='doc'><p>
+Print a border to the window</p></div>
+<h3 id='method.attron'><code>define <a href='#method.attron'>attron</a>(attrs: Integer): Integer</code></h3>
+<div class='doc'><p>
+Changes the definition of a color-pair</p></div>
+<h3 id='method.attroff'><code>define <a href='#method.attroff'>attroff</a>(attrs: Integer): Integer</code></h3>
+<div class='doc'><p>
+turn attribute(s) off</p></div>
+<h3 id='method.attrset'><code>define <a href='#method.attrset'>attrset</a>(attrs: Integer): Integer</code></h3>
+<div class='doc'><p>
+set attribute(s)</p></div>
+<h3 id='method.getyx'><code>define <a href='#method.getyx'>getyx</a>: Tuple[Integer, Integer]</code></h3>
+<div class='doc'><p>
+return the cursor position in a &lt;[y,x]&gt; tuple</p></div>
+<h3 id='method.clear'><code>define <a href='#method.clear'>clear</a>: Integer</code></h3>
+<div class='doc'><p>
+Clears a window</p></div>
+<h3 id='method.erase'><code>define <a href='#method.erase'>erase</a>: Integer</code></h3>
+<div class='doc'><p>
+Copies blanks to the screen, clearing the window</p></div>
+<h3 id='method.clrtoeol'><code>define <a href='#method.clrtoeol'>clrtoeol</a>: Integer</code></h3>
+<div class='doc'><p>
+Clears the current line to the right of the cursor</p></div>
+<h3 id='method.getstr'><code>define <a href='#method.getstr'>getstr</a>(n: *Integer = -1): String</code></h3>
+<div class='doc'><p>
+accept character strings from the curses terminal keyboard
+optionally specify max string length
+otherwise max string len defaults to 256 characters</p></div>
+<h3 id='method.mvgetstr'><code>define <a href='#method.mvgetstr'>mvgetstr</a>(n: *Integer = -1): String</code></h3>
+<div class='doc'><p>
+Moves to an xy coordinate, then accepts a character string
+from the curses terminal keyboard
+optionally specify max string length
+otherwise max string len defaults to 256 characters</p></div>
+<h3 id='method.keypad'><code>define <a href='#method.keypad'>keypad</a>(mode: Boolean)</code></h3>
+<div class='doc'><p>
+Enable or Disable keypad mode. Keypad mode enables the user to
+read in things like function keys or arrow keys.</p></div>
+<h3 id='method.getch'><code>define <a href='#method.getch'>getch</a>: Byte</code></h3>
+<div class='doc'><p>
+Reads a character from the keyboard</p></div>
+<h3 id='method.mvgetch'><code>define <a href='#method.mvgetch'>mvgetch</a>: Byte</code></h3>
+<div class='doc'><p>
+Moves to an xy coordinate, then reads a character from the keyboard</p></div>
+<h3 id='method.stdscr'><code>define <a href='#method.stdscr'>stdscr</a></code></h3>
+<div class='doc'><p>
+Turns an instance of Window to reference the stdscr
+(Yes, I know it kinda sucks)</p></div>
+        </section>
+    </body>
+</html>
