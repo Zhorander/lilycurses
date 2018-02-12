@@ -21,6 +21,11 @@ library lcurses
 NCurses bindings.
 */
 
+/** TODO
+ *
+ * arg checking (lily_check_args)
+ */
+
 /** Begin autogen section. **/
 typedef struct lily_lcurses_Window_ {
     LILY_FOREIGN_HEADER
@@ -394,8 +399,8 @@ void lily_lcurses__has_colors(lily_state *s)
 {
     if (has_colors() == 0)
         lily_return_boolean(s, 0);
-
-    lily_return_boolean(s, 1);
+    else
+        lily_return_boolean(s, 1);
 }
 
 /**
@@ -407,8 +412,8 @@ void lily_lcurses__can_change_color(lily_state *s)
 {
     if (can_change_color() == 0)
         lily_return_boolean(s, 0);
-
-    lily_return_boolean(s, 1);
+    else
+        lily_return_boolean(s, 1);
 }
 
 /**
@@ -869,14 +874,14 @@ Print a border to the window
 void lily_lcurses_Window_border(lily_state *s)
 {
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
-    uint8_t ls = lily_arg_byte(s,1);
-    uint8_t rs = lily_arg_byte(s,2);
-    uint8_t ts = lily_arg_byte(s,3);
-    uint8_t bs = lily_arg_byte(s,4);
-    uint8_t tl = lily_arg_byte(s,5);
-    uint8_t tr = lily_arg_byte(s,6);
-    uint8_t bl = lily_arg_byte(s,7);
-    uint8_t br = lily_arg_byte(s,8);
+    int64_t ls = lily_arg_integer(s,1);
+    int64_t rs = lily_arg_integer(s,2);
+    int64_t ts = lily_arg_integer(s,3);
+    int64_t bs = lily_arg_integer(s,4);
+    int64_t tl = lily_arg_integer(s,5);
+    int64_t tr = lily_arg_integer(s,6);
+    int64_t bl = lily_arg_integer(s,7);
+    int64_t br = lily_arg_integer(s,8);
 
     int ret;
 
