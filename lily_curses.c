@@ -332,6 +332,9 @@ for input.
 */
 void lily_lcurses__halfdelay(lily_state *s)
 {
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     int64_t tenths = lily_arg_integer(s,0);
 
     halfdelay(tenths);
@@ -423,6 +426,9 @@ Changes the definition of a color-pair
 */
 void lily_lcurses__init_pair(lily_state *s)
 {
+    if (lily_arg_count(s) < 3)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     int64_t np = lily_arg_integer(s, 0);
     int64_t fg = lily_arg_integer(s, 1);
     int64_t bg = lily_arg_integer(s, 2);
@@ -439,6 +445,9 @@ Change the definition of a color
 */
 void lily_lcurses__init_color(lily_state *s)
 {
+    if (lily_arg_count(s) < 4)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     int64_t colr = lily_arg_integer(s, 0);
     int64_t r = lily_arg_integer(s, 1);
     int64_t g = lily_arg_integer(s, 2);
@@ -456,6 +465,9 @@ return the rgb contents of a color in an <[r,g,b]> tuple
 */
 void lily_lcurses__color_content(lily_state *s)
 {
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     int64_t colr = lily_arg_integer(s, 0);
 
     short r;
@@ -482,6 +494,9 @@ Sets the cursor on/off
 */
 void lily_lcurses__curs_set(lily_state *s)
 {
+    if (lily_arg_count(s) != 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     int set = lily_arg_boolean(s, 0);
 
     int ret = curs_set(set);
@@ -496,7 +511,10 @@ sleep for ms micro seconds
 */
 void lily_lcurses__sleep(lily_state *s)
 {
-int64_t t = lily_arg_integer(s, 0);
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
+    int64_t t = lily_arg_integer(s, 0);
 
     usleep(t);
 
@@ -723,6 +741,9 @@ Most functions that operate on a window are member functions.
 
 void lily_lcurses_Window_new(lily_state *s)
 {
+    if (lily_arg_count(s) != 4 && lily_arg_count(s) != 5)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     int x;
     int y;
     int w;
@@ -778,6 +799,9 @@ Print a string to the window
 */
 void lily_lcurses_Window_print(lily_state *s)
 {
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     char *str = lily_arg_string_raw(s,1);
     int ret;
@@ -794,6 +818,9 @@ Move to an xy coordinate, then print a string to the window
 */
 void lily_lcurses_Window_mvprint(lily_state *s)
 {
+    if (lily_arg_count(s) < 3)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     int ret;
 
@@ -813,6 +840,9 @@ Print a character to the window
 */
 void lily_lcurses_Window_addch(lily_state *s)
 {
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     uint8_t c = lily_arg_byte(s,1);
 
@@ -830,6 +860,9 @@ Move to an xy coordinate, then print a character to the window
 */
 void lily_lcurses_Window_mvaddch(lily_state *s)
 {
+    if (lily_arg_count(s) < 3)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
 
     int64_t y = lily_arg_integer(s,1);
@@ -873,6 +906,9 @@ Print a border to the window
 */
 void lily_lcurses_Window_border(lily_state *s)
 {
+    if (lily_arg_count(s) < 8)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     int64_t ls = lily_arg_integer(s,1);
     int64_t rs = lily_arg_integer(s,2);
@@ -897,6 +933,9 @@ Changes the definition of a color-pair
 */
 void lily_lcurses_Window_attron(lily_state *s)
 {
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     int64_t attrs = lily_arg_integer(s, 1);
 
@@ -912,6 +951,9 @@ turn attribute(s) off
 */
 void lily_lcurses_Window_attroff(lily_state *s)
 {
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     int64_t attrs = lily_arg_integer(s, 1);
 
@@ -927,6 +969,9 @@ set attribute(s)
 */
 void lily_lcurses_Window_attrset(lily_state *s)
 {
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     int64_t attrs = lily_arg_integer(s, 1);
 
@@ -1011,6 +1056,9 @@ otherwise max string len defaults to 256 characters
 */
 void lily_lcurses_Window_getstr(lily_state *s)
 {
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     int64_t n = lily_arg_integer(s,1);
 
@@ -1044,6 +1092,9 @@ otherwise max string len defaults to 256 characters
 */
 void lily_lcurses_Window_mvgetstr(lily_state *s)
 {
+    if (lily_arg_count(s) < 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     int64_t n = lily_arg_integer(s,1);
 
@@ -1075,6 +1126,9 @@ read in things like function keys or arrow keys.
 */
 void lily_lcurses_Window_keypad(lily_state *s)
 {
+    if (lily_arg_count(s) != 1)
+        lily_RuntimeError(s, "Incorrect number of arguments");
+
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
     int mode = lily_arg_boolean(s,1);
     int ret;
