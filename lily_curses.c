@@ -64,7 +64,7 @@ typedef struct lily_lcurses_Window_ {
 #define INIT_Window(state)\
 (lily_lcurses_Window *) lily_push_foreign(state, ID_Window(state), (lily_destroy_func)destroy_Window, sizeof(lily_lcurses_Window))
 
-const char *lily_lcurses_table[] = {
+const char *lily_lcurses_info_table[] = {
     "\01Window\0"
     ,"C\025Window\0"
     ,"m\0<new>\0(Integer,Integer,Integer,Integer,*Boolean): Window"
@@ -189,71 +189,69 @@ void lily_lcurses_var_A_STANDOUT(lily_state *);
 void lily_lcurses_var_A_BLINK(lily_state *);
 void lily_lcurses_var_A_REVERSE(lily_state *);
 void lily_lcurses_var_ERR(lily_state *);
-void *lily_lcurses_loader(lily_state *s, int id)
-{
-    switch (id) {
-        case Window_OFFSET + 1: return lily_lcurses_Window_new;
-        case Window_OFFSET + 2: return lily_lcurses_Window_refresh;
-        case Window_OFFSET + 3: return lily_lcurses_Window_print;
-        case Window_OFFSET + 4: return lily_lcurses_Window_mvprint;
-        case Window_OFFSET + 5: return lily_lcurses_Window_addch;
-        case Window_OFFSET + 6: return lily_lcurses_Window_mvaddch;
-        case Window_OFFSET + 7: return lily_lcurses_Window_getmaxyx;
-        case Window_OFFSET + 8: return lily_lcurses_Window_border;
-        case Window_OFFSET + 9: return lily_lcurses_Window_attron;
-        case Window_OFFSET + 10: return lily_lcurses_Window_attroff;
-        case Window_OFFSET + 11: return lily_lcurses_Window_attrset;
-        case Window_OFFSET + 12: return lily_lcurses_Window_getyx;
-        case Window_OFFSET + 13: return lily_lcurses_Window_clear;
-        case Window_OFFSET + 14: return lily_lcurses_Window_erase;
-        case Window_OFFSET + 15: return lily_lcurses_Window_clrtoeol;
-        case Window_OFFSET + 16: return lily_lcurses_Window_getstr;
-        case Window_OFFSET + 17: return lily_lcurses_Window_mvgetstr;
-        case Window_OFFSET + 18: return lily_lcurses_Window_keypad;
-        case Window_OFFSET + 19: return lily_lcurses_Window_getch;
-        case Window_OFFSET + 20: return lily_lcurses_Window_mvgetch;
-        case Window_OFFSET + 21: return lily_lcurses_Window_stdscr;
-        case toplevel_OFFSET + 0: return lily_lcurses__initscr;
-        case toplevel_OFFSET + 1: return lily_lcurses__endwin;
-        case toplevel_OFFSET + 2: return lily_lcurses__raw;
-        case toplevel_OFFSET + 3: return lily_lcurses__cbreak;
-        case toplevel_OFFSET + 4: return lily_lcurses__nocbreak;
-        case toplevel_OFFSET + 5: return lily_lcurses__echo;
-        case toplevel_OFFSET + 6: return lily_lcurses__noecho;
-        case toplevel_OFFSET + 7: return lily_lcurses__halfdelay;
-        case toplevel_OFFSET + 8: return lily_lcurses__COLS;
-        case toplevel_OFFSET + 9: return lily_lcurses__LINES;
-        case toplevel_OFFSET + 10: return lily_lcurses__COLOR_PAIR;
-        case toplevel_OFFSET + 11: return lily_lcurses__start_color;
-        case toplevel_OFFSET + 12: return lily_lcurses__has_colors;
-        case toplevel_OFFSET + 13: return lily_lcurses__can_change_color;
-        case toplevel_OFFSET + 14: return lily_lcurses__init_pair;
-        case toplevel_OFFSET + 15: return lily_lcurses__init_color;
-        case toplevel_OFFSET + 16: return lily_lcurses__color_content;
-        case toplevel_OFFSET + 17: return lily_lcurses__curs_set;
-        case toplevel_OFFSET + 18: return lily_lcurses__sleep;
-        case toplevel_OFFSET + 19: lily_lcurses_var_KEY_LEFT(s); return NULL;
-        case toplevel_OFFSET + 20: lily_lcurses_var_KEY_RIGHT(s); return NULL;
-        case toplevel_OFFSET + 21: lily_lcurses_var_KEY_UP(s); return NULL;
-        case toplevel_OFFSET + 22: lily_lcurses_var_KEY_DOWN(s); return NULL;
-        case toplevel_OFFSET + 23: lily_lcurses_var_COLOR_RED(s); return NULL;
-        case toplevel_OFFSET + 24: lily_lcurses_var_COLOR_BLACK(s); return NULL;
-        case toplevel_OFFSET + 25: lily_lcurses_var_COLOR_GREEN(s); return NULL;
-        case toplevel_OFFSET + 26: lily_lcurses_var_COLOR_YELLOW(s); return NULL;
-        case toplevel_OFFSET + 27: lily_lcurses_var_COLOR_BLUE(s); return NULL;
-        case toplevel_OFFSET + 28: lily_lcurses_var_COLOR_MAGENTA(s); return NULL;
-        case toplevel_OFFSET + 29: lily_lcurses_var_COLOR_CYAN(s); return NULL;
-        case toplevel_OFFSET + 30: lily_lcurses_var_COLOR_WHITE(s); return NULL;
-        case toplevel_OFFSET + 31: lily_lcurses_var_A_BOLD(s); return NULL;
-        case toplevel_OFFSET + 32: lily_lcurses_var_A_UNDERLINE(s); return NULL;
-        case toplevel_OFFSET + 33: lily_lcurses_var_A_NORMAL(s); return NULL;
-        case toplevel_OFFSET + 34: lily_lcurses_var_A_STANDOUT(s); return NULL;
-        case toplevel_OFFSET + 35: lily_lcurses_var_A_BLINK(s); return NULL;
-        case toplevel_OFFSET + 36: lily_lcurses_var_A_REVERSE(s); return NULL;
-        case toplevel_OFFSET + 37: lily_lcurses_var_ERR(s); return NULL;
-        default: return NULL;
-    }
-}
+void (*lily_lcurses_call_table[])(lily_state *s) = {
+    NULL,
+    NULL,
+    lily_lcurses_Window_new,
+    lily_lcurses_Window_refresh,
+    lily_lcurses_Window_print,
+    lily_lcurses_Window_mvprint,
+    lily_lcurses_Window_addch,
+    lily_lcurses_Window_mvaddch,
+    lily_lcurses_Window_getmaxyx,
+    lily_lcurses_Window_border,
+    lily_lcurses_Window_attron,
+    lily_lcurses_Window_attroff,
+    lily_lcurses_Window_attrset,
+    lily_lcurses_Window_getyx,
+    lily_lcurses_Window_clear,
+    lily_lcurses_Window_erase,
+    lily_lcurses_Window_clrtoeol,
+    lily_lcurses_Window_getstr,
+    lily_lcurses_Window_mvgetstr,
+    lily_lcurses_Window_keypad,
+    lily_lcurses_Window_getch,
+    lily_lcurses_Window_mvgetch,
+    lily_lcurses_Window_stdscr,
+    lily_lcurses__initscr,
+    lily_lcurses__endwin,
+    lily_lcurses__raw,
+    lily_lcurses__cbreak,
+    lily_lcurses__nocbreak,
+    lily_lcurses__echo,
+    lily_lcurses__noecho,
+    lily_lcurses__halfdelay,
+    lily_lcurses__COLS,
+    lily_lcurses__LINES,
+    lily_lcurses__COLOR_PAIR,
+    lily_lcurses__start_color,
+    lily_lcurses__has_colors,
+    lily_lcurses__can_change_color,
+    lily_lcurses__init_pair,
+    lily_lcurses__init_color,
+    lily_lcurses__color_content,
+    lily_lcurses__curs_set,
+    lily_lcurses__sleep,
+    lily_lcurses_var_KEY_LEFT,
+    lily_lcurses_var_KEY_RIGHT,
+    lily_lcurses_var_KEY_UP,
+    lily_lcurses_var_KEY_DOWN,
+    lily_lcurses_var_COLOR_RED,
+    lily_lcurses_var_COLOR_BLACK,
+    lily_lcurses_var_COLOR_GREEN,
+    lily_lcurses_var_COLOR_YELLOW,
+    lily_lcurses_var_COLOR_BLUE,
+    lily_lcurses_var_COLOR_MAGENTA,
+    lily_lcurses_var_COLOR_CYAN,
+    lily_lcurses_var_COLOR_WHITE,
+    lily_lcurses_var_A_BOLD,
+    lily_lcurses_var_A_UNDERLINE,
+    lily_lcurses_var_A_NORMAL,
+    lily_lcurses_var_A_STANDOUT,
+    lily_lcurses_var_A_BLINK,
+    lily_lcurses_var_A_REVERSE,
+    lily_lcurses_var_ERR,
+};
 /** End autogen section. **/
 
 //-------Initialization/Exit------------------
@@ -551,7 +549,7 @@ var KEY_LEFT: Byte
 
 The value of a left key press
 */
-void lily_lcurses__KEY_LEFT(lily_state *s)
+void lily_lcurses_var_KEY_LEFT(lily_state *s)
 {
     lily_push_integer(s, KEY_LEFT);
 }
