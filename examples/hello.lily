@@ -2,8 +2,7 @@ import lcurses
 
 lcurses.initscr()
 
-var stdscr = lcurses.Window(0,0,lcurses.COLS(),lcurses.LINES(), true)
-stdscr.stdscr()
+var stdscr = lcurses.Window.stdscr()
 
 var x = 10
 var y = 10
