@@ -757,15 +757,18 @@ void lily_lcurses_Window_new(lily_state *s)
     y = lily_arg_integer(s, 1);
     w = lily_arg_integer(s, 2);
     h = lily_arg_integer(s, 3);
-    bx = lily_arg_boolean(s, 4);
+    if (lily_arg_count(s) == 6)
+        bx = lily_arg_boolean(s, 4);
+    else
+        bx = 0;
 
     win = newwin(h, w, y, x);
 
     if (bx) {
         box(win, 0, 0);
-        wrefresh(stdscr);
-        wrefresh(win);
     }
+    wrefresh(stdscr);
+    wrefresh(win);
 
     lwin->x = x;
     lwin->y = y;
@@ -1033,8 +1036,12 @@ otherwise max string len defaults to 256 characters
 */
 void lily_lcurses_Window_getstr(lily_state *s)
 {
+    int64_t n;
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
-    int64_t n = lily_arg_integer(s,1);
+    if (lily_arg_count(s) == 2)
+        n = lily_arg_integer(s,1);
+    else
+        n = -1;
 
     char *str = NULL;
 
@@ -1067,7 +1074,11 @@ otherwise max string len defaults to 256 characters
 void lily_lcurses_Window_mvgetstr(lily_state *s)
 {
     lily_lcurses_Window *lwin = ARG_Window(s, 0);
-    int64_t n = lily_arg_integer(s,1);
+    int64_t n;
+    if (lily_arg_count(s) == 2)
+        n = lily_arg_integer(s,1);
+    else
+        n = -1;
 
     char *str = NULL;
 
